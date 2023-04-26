@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+            We have all Fashion products Where you can buy all items...
+{% endblock %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block content %}
+<div>
+    <p class="text-center my_search_text">You have Searched for : <b>'{{query}}'</b></p>
+</div>
+<div class="container">
+    <div class="row">
+        {%  for product in products %}
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center" >
+            <div style="min-width:18rem;">
+                <a href="{{product.get_url}}"><img class="card-img-top my_image" src="{{product.image.url}}" alt="{{product.name}}" ></a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+                <div>
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                    <p class="my_title">Product Description</p>
+                    <p class="text-justify my_prod_text">{{product.description}}</p>
+                 </div>
+        </div>
+
+        {% empty %}
+        <div class="row mx_auto">
+            <p class="text-center my_search_text"> 0 results found </p>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
